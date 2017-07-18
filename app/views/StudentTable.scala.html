@@ -1,0 +1,32 @@
+@import model.entity.Student
+@(studentList: List[Student])
+@main("Estudantes") {
+
+    <a href="@routes.StudentController.addStudent()" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-plus"></i><span>Adicionar Estudante</span></a>
+
+    <table class="table">
+        <tr>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>Edit</th>
+        </tr>
+        @for(student <- studentList) {
+            <tr>
+                <td>@student.getName</td>
+                <td>@student.getBirthday.format("dd/MM/yyyy")</td>
+                <td>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i></button>
+                    </span>
+                </td>
+                <td>
+                    @for(enrollment <- student.getEnrollments){
+                        @enrollment.getSubject
+                        @enrollment.getYear
+                    }
+
+                </td>
+            </tr>
+        }
+    </table>
+}

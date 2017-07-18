@@ -16,7 +16,7 @@ public class Subject extends Model{
     private Long id;
     @Constraints.Required
     private String name;
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     private Teacher teacher;
 
     public Subject(String name, Teacher teacher) {

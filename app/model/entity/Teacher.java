@@ -18,8 +18,8 @@ public class Teacher extends Model implements Person{
     private Long id;
     @Constraints.Required
     private String name;
-    @Formats.DateTime(pattern = "dd/MM/yyyy")
     private Date birthday;
+
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "teacher")
     List<Subject> subjects;
 
@@ -51,5 +51,13 @@ public class Teacher extends Model implements Person{
     @Override
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 }

@@ -1,0 +1,10 @@
+@import model.entity.Teacher
+@(teacherForm: Form[Teacher])
+
+@main("Adicionar Professor"){
+    @helper.form(action = routes.TeacherController.addTeacher()) {
+        @helper.inputText(teacherForm("name"))
+        @helper.inputDate(teacherForm("Birthday"))
+        <button type="submit">Submit</button>
+    }
+}

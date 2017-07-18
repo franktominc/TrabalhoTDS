@@ -1,16 +1,15 @@
 package model.entity;
 
 import com.avaje.ebean.Model;
+import org.springframework.format.annotation.DateTimeFormat;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 
 import java.util.Date;
+import java.util.List;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.Constraint;
 
 /**
@@ -19,12 +18,13 @@ import javax.validation.Constraint;
 @Entity
 public class Student extends Model implements Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Constraints.Required
     private String Name;
-    @Formats.DateTime(pattern = "dd/MM/yyyy")
     private Date Birthday;
+    @OneToMany(mappedBy = "student")
+    List<Enrollment> enrollments;
 
     public Student(String name, Date birthday) {
         Name = name;
@@ -53,5 +53,18 @@ public class Student extends Model implements Person {
     @Override
     public void setBirthday(Date birthday) {
         Birthday = birthday;
+    }
+
+    @Override
+    public String toString() {
+        return "Student(" + Name + "," + Birthday + ")";
+    }
+
+    public List<Enrollment> getEnrollments() {
+        return enrollments;
+    }
+
+    public void setEnrollments(List<Enrollment> enrollments) {
+        this.enrollments = enrollments;
     }
 }

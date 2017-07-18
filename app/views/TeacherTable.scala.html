@@ -1,0 +1,25 @@
+@import model.entity.Teacher
+@(teacherList: List[Teacher])
+@main("Professores") {
+
+    <a href="@routes.TeacherController.addTeacher()" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-plus"></i><span>Adicionar Professor</span></a>
+
+    <table class="table">
+        <tr>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>Edit</th>
+        </tr>
+        @for(teacher <- teacherList) {
+            <tr>
+                <td>@teacher.getName</td>
+                <td>@teacher.getBirthday.format("dd/MM/yyyy")</td>
+                <td>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i></button>
+                    </span>
+                </td>
+            </tr>
+        }
+    </table>
+}
