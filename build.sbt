@@ -17,3 +17,7 @@ libraryDependencies ++= Seq(
 routesGenerator := InjectedRoutesGenerator
 
 // https://mvnrepository.com/artifact/com.adrianhurt/play-bootstrap_2.11
+
+// https://mvnrepository.com/artifact/org.postgresql/postgresql
+libraryDependencies += "org.postgresql" % "postgresql" % "42.1.3"
+

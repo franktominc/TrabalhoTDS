@@ -21,8 +21,9 @@
                 </td>
                 <td>
                     @for(enrollment <- student.getEnrollments){
-                        @enrollment.getSubject
+                        @enrollment.getSubject.getName -
                         @enrollment.getYear
+                    </br>
                     }
 
                 </td>

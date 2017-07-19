@@ -1,6 +1,7 @@
 package model.entity;
 
 import com.avaje.ebean.Model;
+import org.springframework.context.annotation.Primary;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

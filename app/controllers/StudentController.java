@@ -49,4 +49,8 @@ public class StudentController extends Controller {
         studentList.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
         return ok(StudentTable.render(studentList));
     }
+    public Result removeStudent(Long id){
+        studentDao.deleteById(id);
+        return redirect("/students");
+    }
 }

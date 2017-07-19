@@ -20,7 +20,7 @@ public class Teacher extends Model implements Person{
     private String name;
     private Date birthday;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "teacher")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher")
     List<Subject> subjects;
 
     @Override

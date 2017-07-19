@@ -8,6 +8,8 @@ GET     /                           controllers.Application.index()
 GET     /student                    controllers.StudentController.newStudent()
 POST    /student                    controllers.StudentController.addStudent()
 GET     /students                   controllers.StudentController.listStudents()
+DELETE  /student/:id                controllers.StudentController.removeStudent(id: Long)
+GET     /student/:id                controllers.StudentController.removeStudent(id: Long)
 
 
 GET     /teachers                   controllers.TeacherController.listTeachers()
@@ -19,7 +21,8 @@ GET     /subjects                   controllers.SubjectController.listSubjects()
 GET     /subject                    controllers.SubjectController.newSubject()
 POST    /subject                    controllers.SubjectController.addSubject()
 
-GET    /enrollment                 controllers.EnrollmentController.newEnrollment()
+GET    /enrollment                  controllers.EnrollmentController.newEnrollment()
+POST   /enrollment                  controllers.EnrollmentController.addEnrollment()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

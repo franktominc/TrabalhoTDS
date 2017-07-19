@@ -5,7 +5,7 @@
 @(myform: Form[Enrollment], studentList: List[Student], subjectList: List[Subject])
 
 @main("Realizar Matricula"){
-    @helper.form(action = routes.EnrollmentController.newEnrollment){
+    @helper.form(action = routes.EnrollmentController.addEnrollment){
         @helper.select(
             field = myform("student"),
             options = studentList.map(student => student.getId.toString -> student.getName)

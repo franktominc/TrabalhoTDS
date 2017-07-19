@@ -23,7 +23,8 @@ public class Student extends Model implements Person {
     @Constraints.Required
     private String Name;
     private Date Birthday;
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private
     List<Enrollment> enrollments;
 
     public Student(String name, Date birthday) {
