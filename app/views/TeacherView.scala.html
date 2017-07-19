@@ -1,0 +1,16 @@
+@import model.entity.Teacher
+@(teacher: Teacher)
+
+@main("Detalhar Professor"){
+    <span>Nome: @teacher.getName</span>
+    <br/>
+    <span>Data de Nascimento: @teacher.getBirthday.format("dd/MM/yyyy")</span>
+    <br/>
+    Disciplinas Ministradas:
+    <ul>
+    @for(subject <- teacher.getSubjects){
+        <li>
+            Disciplina: @subject.getName
+    }
+    </ul>
+}
