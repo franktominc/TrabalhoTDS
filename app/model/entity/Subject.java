@@ -27,6 +27,9 @@ public class Subject extends Model{
     @OneToMany(cascade = CascadeType.ALL)
     private List<ClassDate> classDates;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Grade> grades;
+
     public Subject(String name, Teacher teacher) {
         this.name = name;
         this.teacher = teacher;
