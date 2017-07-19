@@ -13,7 +13,10 @@
             Disciplina: @enrollment.getSubject.getName
                 <br/>
             Ano: @enrollment.getYear
-
+                <br/>
+                Porcentagem de presenca: @student.getAttendancePercentBySubject(enrollment.getSubject.getId)
+                <br/>
+                Media: @student.getGradeBySubject(enrollment.getSubject.getId)
             </li>
         }
     </ul>

@@ -8,6 +8,9 @@ import play.data.validation.Constraints;
 
 import java.util.Date;
 import java.util.List;
+import java.util.OptionalDouble;
+import java.util.function.BinaryOperator;
+import java.util.function.DoubleSupplier;
 import java.util.stream.Collectors;
 
 
@@ -83,9 +86,18 @@ public class Student extends Model implements Person {
     }
 
     public List<Attendance> getAttendancesBySubject(Long subjectId){
+        return this.attendances.stream().filter(x -> x.getSubject().getId() == subjectId).collect(Collectors.toList());
+    }
+    public Double getAttendancePercentBySubject(Long subjectId){
         List<ClassDate> classDates = new ClassDateDao(ClassDate.class).bySubjectId(subjectId);
         List<Attendance> collect = this.attendances.stream().filter(x -> x.getSubject().getId() == subjectId).collect(Collectors.toList());
-        Logger.debug("Attendance: " + collect.size() / (classDates.size() * 1.0));
-        return collect;
+        if(classDates.size() <= 0) return 0.0;
+        else return collect.size() / (classDates.size() * 1.0);
+    }
+    public Integer getGradeBySubject(Long subjectId){
+        List<Grade> grades = this.grades.stream().filter(x -> x.getSubject().getId() == subjectId).collect(Collectors.toList());
+        OptionalDouble average = grades.stream().mapToInt(Grade::getGrade).average();
+        Double asDouble = average.getAsDouble();
+        return asDouble.intValue();
     }
 }

@@ -2,25 +2,26 @@ package model.entity;
 
 import com.avaje.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 
 @Entity
 public class Grade extends Model{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long Id;
     @ManyToOne(optional = false)
-    private Enrollment enrollment;
+    private Subject subject;
     private Integer grade;
     @ManyToOne(optional = false)
     private Student student;
-    public Grade(Long id, Enrollment enrollment, Integer grade) {
-        Id = id;
-        this.enrollment = enrollment;
+
+
+    public Grade(Student student, Subject subject, Integer grade) {
+        this.subject = subject;
         this.grade = grade;
+        this.student = student;
     }
 
     public Long getId() {
@@ -31,12 +32,12 @@ public class Grade extends Model{
         Id = id;
     }
 
-    public Enrollment getEnrollment() {
-        return enrollment;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setEnrollment(Enrollment enrollment) {
-        this.enrollment = enrollment;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     public Integer getGrade() {
@@ -45,5 +46,13 @@ public class Grade extends Model{
 
     public void setGrade(Integer grade) {
         this.grade = grade;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

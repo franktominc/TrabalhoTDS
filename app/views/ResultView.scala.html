@@ -1,0 +1,33 @@
+@import model.entity.Subject
+@import model.entity.Student
+
+@(subject: Subject, students: List[Student])
+
+@main("Resultado de " + subject.getName){
+    <table class="table">
+        <tr>
+            <th>Nome</th>
+            <th>Resultado</th>
+        </tr>
+        @for(student <- students.sortBy(x=> x.getName.toLowerCase).toSet[Student]) {
+            <tr>
+                <td>@student.getName</td>
+                <td>
+                    @if(student.getEnrollments.filter(x => x.getSubject.getId == subject.getId).head.getPresenceRequired){
+                        @if(student.getAttendancePercentBySubject(subject.getId) >= 0.75 && student.getGradeBySubject(subject.getId) >= 70) {
+                            Aprovado
+                        }else{
+                            Reprovado
+                        }
+                    }else{
+                        @if(student.getGradeBySubject(subject.getId) >= 70) {
+                            Aprovado
+                        }else{
+                             Reprovado
+                         }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}

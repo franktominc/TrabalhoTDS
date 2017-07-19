@@ -1,24 +1,29 @@
 @import model.entity.Subject
+@import model.entity.Enrollment
 @(subject: Subject)
 
 @main("Detalhar Disciplina"){
-    <div class="col-md-6">Nome: @subject.getName</div>
+    <div class="col-md-3">Nome: @subject.getName</div>
     <div class = "col-md-3">Professor: @subject.getTeacher.getName</div>
     <div class="col-md-3"><a href="@routes.SubjectController.newClassDate(subject.getId)" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-calendar"></i><span>Adicionar Data de Aula</span></a></div>
+    <div class="col-md-3"><a href="@routes.ResultController.computeResult(subject.getId)" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-calendar"></i><span>Ver Resultado</span></a></div>
     <table class="table">
         <tr>
             <th>Nome</th>
             <th>Edit</th>
         </tr>
-        @for(enrolled <- subject.getEnrollments){
+        @for(enrolled <- subject.getEnrollments.toSet[Enrollment]){
+            <tr>
             <td>@enrolled.getStudent.getName </td>
             <td>
                 <span class="input-group-btn">
                     <a href="@routes.AttendanceController.addAttendance(subject.getId)" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-plus-sign"></i></a>
                     <a href="@routes.StudentController.showAttendancesByClass(enrolled.getStudent.getId, enrolled.getSubject.getId)" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="@routes.GradeController.addGrade(enrolled.getSubject.getId)" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-gift"></i></a>
 
                 </span>
             </td>
+            </tr>
         }
     </table>
 

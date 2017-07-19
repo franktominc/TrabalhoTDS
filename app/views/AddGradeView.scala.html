@@ -1,0 +1,16 @@
+@import model.entity.Student
+@import play.data.Form
+@import model.entity.Grade
+
+@(id: Long, students: List[Student], form: Form[Grade])
+
+@main("Adicionar Nota"){
+    @helper.form(action = routes.GradeController.newGrade(id)){
+        @helper.select(
+            field = form("student"),
+            options = students.map(student=> student.getId.toString -> student.getName)
+        )
+        @helper.inputText(form("grade"))
+        <button>submit</button>
+    }
+}
