@@ -7,10 +7,7 @@ import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.StudentView;
-import views.html.TeacherForm;
-import views.html.TeacherTable;
-import views.html.TeacherView;
+import views.html.*;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -55,5 +52,17 @@ public class TeacherController extends Controller {
         Teacher teacher = teacherDao.byId(id);
 
         return ok(TeacherView.render(teacher));
+    }
+
+    public Result editTeacher(Long id){
+        Teacher teacher = teacherDao.byId(id);
+        Form<Teacher> teacherForm= formFactory.form(Teacher.class).fill(teacher);
+        return ok(EditTeacherForm.render(teacherForm));
+    }
+
+    public Result updateTeacher(Long id){
+        Teacher teacher = formFactory.form(Teacher.class).bindFromRequest().get();
+        teacher.update();
+        return redirect("/teachers");
     }
 }

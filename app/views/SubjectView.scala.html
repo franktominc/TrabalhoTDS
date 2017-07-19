@@ -1,0 +1,16 @@
+@import model.entity.Subject
+@(subject: Subject)
+
+@main("Detalhar Professor"){
+    <span>Nome: @subject.getName</span>
+    <br/>
+    <span>Professor: @subject.getTeacher.getName</span>
+    <br/>
+    Matriculados:
+    <ul>
+    @for(enrolled <- subject.getEnrollments){
+        <li>
+            Aluno: @enrolled.getStudent.getName
+        }
+    </ul>
+}

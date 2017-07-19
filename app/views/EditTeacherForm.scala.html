@@ -1,0 +1,11 @@
+@import model.entity.Teacher
+@(teacherForm: Form[Teacher])
+
+@main("Adicionar Estudante"){
+    @helper.form(action = routes.TeacherController.updateTeacher(Long.parseLong(teacherForm("id").value))){
+        @helper.inputText(teacherForm("id"), 'style -> "display: none")
+        @helper.inputText(teacherForm("Name"))
+        @helper.inputDate(teacherForm("Birthday"))
+        <button>Submit</button>
+    }
+}

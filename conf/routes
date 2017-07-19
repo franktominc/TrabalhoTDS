@@ -19,11 +19,13 @@ GET     /teacher                    controllers.TeacherController.newTeacher()
 POST    /teacher                    controllers.TeacherController.addTeacher()
 GET     /teacher/remove/:id         controllers.TeacherController.removeTeacher(id: Long)
 GET     /teacher/:id                controllers.TeacherController.viewTeacher(id: Long)
-
+GET     /teacher/edit/:id           controllers.TeacherController.editTeacher(id: Long)
+POST    /teacher/update/:id         controllers.TeacherController.updateTeacher(id: Long)
 
 GET     /subjects                   controllers.SubjectController.listSubjects()
 GET     /subject                    controllers.SubjectController.newSubject()
 POST    /subject                    controllers.SubjectController.addSubject()
+GET     /subject/:id                controllers.SubjectController.viewSubject(id: Long)
 
 GET    /enrollment                  controllers.EnrollmentController.newEnrollment()
 POST   /enrollment                  controllers.EnrollmentController.addEnrollment()

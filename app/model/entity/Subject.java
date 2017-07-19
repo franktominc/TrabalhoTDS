@@ -19,6 +19,7 @@ public class Subject extends Model{
     private String name;
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     private Teacher teacher;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Enrollment> enrollments;
 
@@ -49,5 +50,13 @@ public class Subject extends Model{
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    public List<Enrollment> getEnrollments() {
+        return enrollments;
+    }
+
+    public void setEnrollments(List<Enrollment> enrollments) {
+        this.enrollments = enrollments;
     }
 }

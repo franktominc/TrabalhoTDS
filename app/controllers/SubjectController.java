@@ -12,6 +12,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.SubjectForm;
 import views.html.SubjectTable;
+import views.html.SubjectView;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -43,5 +44,11 @@ public class SubjectController extends Controller {
         Subject subject = new Subject(name, teacherDao.byId(teacherId));
         subject.save();
         return redirect("/subjects");
+    }
+
+    public Result viewSubject(Long id){
+        Subject subject = subjectDao.byId(id);
+
+        return ok(SubjectView.render(subject));
     }
 }
