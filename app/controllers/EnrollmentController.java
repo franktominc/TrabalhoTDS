@@ -36,9 +36,10 @@ public class EnrollmentController extends Controller {
         DynamicForm requestData = formFactory.form().bindFromRequest();
         Long studentId = Long.parseLong(requestData.get("student"));
         Long subjectId = Long.parseLong(requestData.get("subject"));
+        Integer year = Integer.parseInt(requestData.get("year"));
         Boolean isPresenceRequired = Boolean.parseBoolean(requestData.get("isPresenceRequired"));
 
-        Enrollment enrollment = new Enrollment(studentDao.byId(studentId), subjectDao.byId(subjectId), Year.now() ,isPresenceRequired);
+        Enrollment enrollment = new Enrollment(studentDao.byId(studentId), subjectDao.byId(subjectId), Year.of(year) ,isPresenceRequired);
         enrollment.save();
 
         return redirect("/students");

@@ -16,17 +16,11 @@
                 <td>@student.getBirthday.format("dd/MM/yyyy")</td>
                 <td>
                     <span class="input-group-btn">
-                        <button class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i></button>
+                        <a href="@routes.StudentController.viewStudent(student.getId)" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
+                        <a href="@routes.StudentController.removeStudent(student.getId)" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-remove-sign"></i></a>
                     </span>
                 </td>
-                <td>
-                    @for(enrollment <- student.getEnrollments){
-                        @enrollment.getSubject.getName -
-                        @enrollment.getYear
-                    </br>
-                    }
 
-                </td>
             </tr>
         }
     </table>

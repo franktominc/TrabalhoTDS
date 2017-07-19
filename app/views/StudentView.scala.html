@@ -1,0 +1,20 @@
+@import model.entity.Student
+@(student: Student)
+
+@main("Detalhar Estudante"){
+    <span>Nome: @student.getName</span>
+    <br/>
+    <span>Data de Nascimento: @student.getBirthday.format("dd/MM/yyyy")</span>
+    <br/>
+    Disciplinas Matriculadas:
+    <ul>
+        @for(enrollment <- student.getEnrollments){
+            <li>
+            Disciplina: @enrollment.getSubject.getName
+                <br/>
+            Ano: @enrollment.getYear
+
+            </li>
+        }
+    </ul>
+}

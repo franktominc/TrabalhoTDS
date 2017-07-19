@@ -10,6 +10,7 @@ import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.StudentTable;
+import views.html.StudentView;
 import views.html.index;
 import views.html.studentform;
 
@@ -52,5 +53,11 @@ public class StudentController extends Controller {
     public Result removeStudent(Long id){
         studentDao.deleteById(id);
         return redirect("/students");
+    }
+
+    public Result viewStudent(Long id){
+        Student student = studentDao.byId(id);
+
+        return ok(StudentView.render(student));
     }
 }

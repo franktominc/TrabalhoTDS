@@ -15,9 +15,9 @@ public class Enrollment extends Model{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(optional = false)
     private Student student;
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(optional = false)
     private Subject subject;
     @DateTimeFormat(pattern = "yyyy")
     private Year year;

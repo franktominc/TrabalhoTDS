@@ -13,9 +13,10 @@ public class Grade extends Model{
     @Id
     private Long Id;
     @ManyToOne(optional = false)
-    Enrollment enrollment;
-    Integer grade;
-
+    private Enrollment enrollment;
+    private Integer grade;
+    @ManyToOne(optional = false)
+    private Student student;
     public Grade(Long id, Enrollment enrollment, Integer grade) {
         Id = id;
         this.enrollment = enrollment;
