@@ -23,9 +23,13 @@ public class Student extends Model implements Person {
     @Constraints.Required
     private String Name;
     private Date Birthday;
+
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private
-    List<Enrollment> enrollments;
+    private List<Enrollment> enrollments;
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Presence> presences;
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Grade> grades;
 
     public Student(String name, Date birthday) {
         Name = name;
@@ -67,5 +71,13 @@ public class Student extends Model implements Person {
 
     public void setEnrollments(List<Enrollment> enrollments) {
         this.enrollments = enrollments;
+    }
+
+    public List<Presence> getPresences() {
+        return presences;
+    }
+
+    public void setPresences(List<Presence> presences) {
+        this.presences = presences;
     }
 }
