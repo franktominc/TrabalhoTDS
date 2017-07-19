@@ -15,5 +15,11 @@ GET     /teacher                    controllers.TeacherController.newTeacher()
 POST    /teacher                    controllers.TeacherController.addTeacher()
 
 
+GET     /subjects                   controllers.SubjectController.listSubjects()
+GET     /subject                    controllers.SubjectController.newSubject()
+POST    /subject                    controllers.SubjectController.addSubject()
+
+GET    /enrollment                 controllers.EnrollmentController.newEnrollment()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

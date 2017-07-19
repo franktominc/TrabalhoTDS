@@ -1,0 +1,14 @@
+@import model.entity.Subject
+@import play.data.Form
+@import model.entity.Teacher
+@(myForm: Form[Subject], teacherList: List[Teacher])
+@main("Adicionar Disciplina"){
+    @helper.form(action = routes.SubjectController.addSubject()) {
+        @helper.inputText(myForm("name"))
+        @helper.select(
+            field = myForm("teacher"),
+            options = teacherList.map(teacher => teacher.getId.toString -> teacher.getName)
+        )
+        <button type="submit">Submit</button>
+    }
+}

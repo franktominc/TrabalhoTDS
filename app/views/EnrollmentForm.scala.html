@@ -1,0 +1,20 @@
+@import model.entity.Enrollment
+@import model.entity.Student
+@import model.entity.Subject
+@import play.data.Form
+@(myform: Form[Enrollment], studentList: List[Student], subjectList: List[Subject])
+
+@main("Realizar Matricula"){
+    @helper.form(action = routes.EnrollmentController.newEnrollment){
+        @helper.select(
+            field = myform("student"),
+            options = studentList.map(student => student.getId.toString -> student.getName)
+        )
+        @helper.select(
+            field = myform("subject"),
+            options = subjectList.map(subject => subject.getId.toString -> subject.getName)
+        )
+        @helper.checkbox(field = myform("isPresenceRequired"))
+        <button type="submit">Submit</button>
+    }
+}
