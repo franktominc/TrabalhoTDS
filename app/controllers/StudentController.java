@@ -3,6 +3,7 @@ package controllers;
 
 import com.avaje.ebean.EbeanServer;
 import model.dao.StudentDao;
+import model.entity.Attendance;
 import model.entity.Student;
 import play.Logger;
 import play.data.Form;
@@ -67,5 +68,9 @@ public class StudentController extends Controller {
         Student student = formFactory.form(Student.class).bindFromRequest().get();
         student.update();
         return redirect("/students");
+    }
+    public Result showAttendancesByClass(Long studentId, Long SubjectId){
+        List<Attendance> attendancesBySubject = studentDao.byId(studentId).getAttendancesBySubject(SubjectId);
+        return ok(StudentAttendanceView.render(studentDao.byId(studentId),attendancesBySubject));
     }
 }

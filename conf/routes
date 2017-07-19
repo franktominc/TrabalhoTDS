@@ -33,8 +33,10 @@ POST    /subject/:id/newClassDate   controllers.SubjectController.addClassDate(i
 GET     /enrollment                 controllers.EnrollmentController.newEnrollment()
 POST    /enrollment                 controllers.EnrollmentController.addEnrollment()
 
-GET     /Attendance/:id             controllers.AttendanceController.addAttendance(id: Long)
-POST    /Attendance/:id             controllers.AttendanceController.newAttendance(id: Long)
+GET     /attendance/:id             controllers.AttendanceController.addAttendance(id: Long)
+POST    /attendance/:id             controllers.AttendanceController.newAttendance(id: Long)
+
+GET     /attendance/:studentId/:subjectId   controllers.StudentController.showAttendancesByClass(studentId: Long, subjectId: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

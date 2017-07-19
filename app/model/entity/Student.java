@@ -1,6 +1,9 @@
 package model.entity;
 
 import com.avaje.ebean.Model;
+import model.dao.ClassDateDao;
+import model.dao.SubjectDao;
+import play.Logger;
 import play.data.validation.Constraints;
 
 import java.util.Date;
@@ -78,7 +81,11 @@ public class Student extends Model implements Person {
     public void setAttendances(List<Attendance> attendances) {
         this.attendances = attendances;
     }
+
     public List<Attendance> getAttendancesBySubject(Long subjectId){
-        return this.attendances.stream().filter(x -> x.getSubject().getId() == subjectId).collect(Collectors.toList());
+        List<ClassDate> classDates = new ClassDateDao(ClassDate.class).bySubjectId(subjectId);
+        List<Attendance> collect = this.attendances.stream().filter(x -> x.getSubject().getId() == subjectId).collect(Collectors.toList());
+        Logger.debug("Attendance: " + collect.size() / (classDates.size() * 1.0));
+        return collect;
     }
 }

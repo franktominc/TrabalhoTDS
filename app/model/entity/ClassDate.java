@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by ftominc on 7/17/17.
@@ -18,7 +19,8 @@ public class ClassDate extends Model {
     private Date date;
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     private Subject subject;
-
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Attendance> attendances;
     public ClassDate(Date date, Subject subject) {
         this.date = date;
         this.subject = subject;

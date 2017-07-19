@@ -1,0 +1,20 @@
+@import model.entity.Student
+@import model.entity.Attendance
+
+@(student: Student, attendances: List[Attendance])
+
+@main("Presencas do aluno por Disciplina"){
+    <div class="col-md-3">
+        Nome: @student.getName
+    </div>
+    <br/>
+    <div class="col-md-12">
+        <ul>
+            @for(attendance <- attendances){
+                <li>
+                    @attendance.getClassDate.getDate.format("dd/MM/yyyy")
+                </li>
+            }
+        </ul>
+    </div>
+}

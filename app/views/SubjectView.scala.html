@@ -14,7 +14,8 @@
             <td>@enrolled.getStudent.getName </td>
             <td>
                 <span class="input-group-btn">
-                    <a href="@routes.AttendanceController.addAttendance(subject.getId)" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="@routes.AttendanceController.addAttendance(subject.getId)" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                    <a href="@routes.StudentController.showAttendancesByClass(enrolled.getStudent.getId, enrolled.getSubject.getId)" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
 
                 </span>
             </td>

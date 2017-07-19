@@ -23,6 +23,8 @@ public class Teacher extends Model implements Person{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher")
     List<Subject> subjects;
 
+
+
     @Override
     public Long getId() {
         return id;
