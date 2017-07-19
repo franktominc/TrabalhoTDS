@@ -9,6 +9,8 @@ GET     /student                    controllers.StudentController.newStudent()
 POST    /student                    controllers.StudentController.addStudent()
 GET     /students                   controllers.StudentController.listStudents()
 GET     /student/remove/:id         controllers.StudentController.removeStudent(id: Long)
+GET     /student/edit/:id           controllers.StudentController.editStudent(id: Long)
+POST    /student/update/:id         controllers.StudentController.updateStudent(id:Long)
 GET     /student/:id                controllers.StudentController.viewStudent(id: Long)
 
 

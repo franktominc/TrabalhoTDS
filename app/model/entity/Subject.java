@@ -5,6 +5,7 @@ import play.data.validation.Constraints;
 
 import javax.persistence.*;
 import javax.validation.Constraint;
+import java.util.List;
 
 /**
  * Created by ftominc on 7/17/17.
@@ -18,6 +19,8 @@ public class Subject extends Model{
     private String name;
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     private Teacher teacher;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Enrollment> enrollments;
 
     public Subject(String name, Teacher teacher) {
         this.name = name;

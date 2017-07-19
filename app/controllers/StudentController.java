@@ -9,10 +9,7 @@ import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.StudentTable;
-import views.html.StudentView;
-import views.html.index;
-import views.html.studentform;
+import views.html.*;
 
 import javax.inject.Inject;
 import java.util.Comparator;
@@ -42,7 +39,7 @@ public class StudentController extends Controller {
 
     public Result newStudent() {
         Form<Student> studentForm = formFactory.form(Student.class);
-        return ok(studentform.render(studentForm));
+        return ok(CreateStudentForm.render(studentForm));
     }
 
     public Result listStudents(){
@@ -59,5 +56,16 @@ public class StudentController extends Controller {
         Student student = studentDao.byId(id);
 
         return ok(StudentView.render(student));
+    }
+    public Result editStudent(Long id){
+        Student student = studentDao.byId(id);
+        Form<Student> studentForm= formFactory.form(Student.class).fill(student);
+        return ok(EditStudentForm.render(studentForm));
+    }
+
+    public Result updateStudent(Long id){
+        Student student = formFactory.form(Student.class).bindFromRequest().get();
+        student.update();
+        return redirect("/students");
     }
 }
