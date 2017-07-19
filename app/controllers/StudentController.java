@@ -59,7 +59,7 @@ public class StudentController extends Controller {
     }
     public Result editStudent(Long id){
         Student student = studentDao.byId(id);
-        Form<Student> studentForm= formFactory.form(Student.class).fill(student);
+        Form<Student> studentForm = formFactory.form(Student.class).fill(student);
         return ok(EditStudentForm.render(studentForm));
     }
 

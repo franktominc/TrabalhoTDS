@@ -20,8 +20,12 @@ public class Subject extends Model{
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     private Teacher teacher;
 
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Enrollment> enrollments;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<ClassDate> classDates;
 
     public Subject(String name, Teacher teacher) {
         this.name = name;

@@ -1,16 +1,24 @@
 @import model.entity.Subject
 @(subject: Subject)
 
-@main("Detalhar Professor"){
-    <span>Nome: @subject.getName</span>
-    <br/>
-    <span>Professor: @subject.getTeacher.getName</span>
-    <br/>
-    Matriculados:
-    <ul>
-    @for(enrolled <- subject.getEnrollments){
-        <li>
-            Aluno: @enrolled.getStudent.getName
+@main("Detalhar Disciplina"){
+    <div class="col-md-6">Nome: @subject.getName</div>
+    <div class = "col-md-3">Professor: @subject.getTeacher.getName</div>
+    <div class="col-md-3"><a href="@routes.SubjectController.newClassDate(subject.getId)" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-calendar"></i><span>Adicionar Data de Aula</span></a></div>
+    <table class="table">
+        <tr>
+            <th>Nome</th>
+            <th>Edit</th>
+        </tr>
+        @for(enrolled <- subject.getEnrollments){
+            <td>@enrolled.getStudent.getName </td>
+            <td>
+                <span class="input-group-btn">
+                    <a href="@routes.AttendanceController.addAttendance(subject.getId)" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
+
+                </span>
+            </td>
         }
-    </ul>
+    </table>
+
 }

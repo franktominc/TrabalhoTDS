@@ -1,0 +1,11 @@
+@import model.entity.Subject
+@import model.entity.ClassDate
+@import play.data.Form
+@(form: Form[ClassDate],subjectId: Long)
+
+@main("Adicionar data de Aula"){
+    @helper.form(action = routes.SubjectController.addClassDate(subjectId)){
+        @helper.inputDate(form("date"))
+        <button>Submit</button>
+    }
+}

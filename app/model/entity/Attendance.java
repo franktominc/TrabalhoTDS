@@ -8,19 +8,22 @@ import javax.persistence.*;
  * Created by ftominc on 7/17/17.
  */
 @Entity
-public class Presence extends Model {
+public class Attendance extends Model {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(optional = false)
     private Student student;
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(optional = false)
+    private Subject subject;
+    @ManyToOne(optional = false)
     private ClassDate classDate;
 
 
-    public Presence(Student student, ClassDate classDate) {
+    public Attendance(Student student,Subject subject, ClassDate classDate) {
         this.student = student;
         this.classDate = classDate;
+        this.subject = subject;
     }
 
     public Long getId() {
@@ -45,5 +48,13 @@ public class Presence extends Model {
 
     public void setClassDate(ClassDate classDate) {
         this.classDate = classDate;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 }

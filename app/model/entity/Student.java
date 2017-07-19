@@ -1,16 +1,14 @@
 package model.entity;
 
 import com.avaje.ebean.Model;
-import org.springframework.format.annotation.DateTimeFormat;
-import play.data.format.Formats;
 import play.data.validation.Constraints;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 import javax.persistence.*;
-import javax.validation.Constraint;
 
 /**
  * Created by ftominc on 7/17/17.
@@ -27,7 +25,7 @@ public class Student extends Model implements Person {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Enrollment> enrollments;
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<Presence> presences;
+    private List<Attendance> attendances;
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Grade> grades;
 
@@ -73,11 +71,14 @@ public class Student extends Model implements Person {
         this.enrollments = enrollments;
     }
 
-    public List<Presence> getPresences() {
-        return presences;
+    public List<Attendance> getAttendances() {
+        return attendances;
     }
 
-    public void setPresences(List<Presence> presences) {
-        this.presences = presences;
+    public void setAttendances(List<Attendance> attendances) {
+        this.attendances = attendances;
+    }
+    public List<Attendance> getAttendancesBySubject(Long subjectId){
+        return this.attendances.stream().filter(x -> x.getSubject().getId() == subjectId).collect(Collectors.toList());
     }
 }

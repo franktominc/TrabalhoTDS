@@ -1,0 +1,19 @@
+@import model.entity.Student
+@import model.entity.ClassDate
+@import play.data.Form
+@import model.entity.Attendance
+
+@(subjectId: Long, students: List[Student], classDates: List[ClassDate], form: Form[Attendance])
+@main("Cadastrar Presenca"){
+    @helper.form(action = routes.AttendanceController.newAttendance(subjectId)){
+        @helper.select(
+            field = form("student"),
+            options = students.map(teacher => teacher.getId.toString -> teacher.getName)
+        )
+        @helper.select(
+            field = form("class_date"),
+            options = classDates.map(classDate => classDate.getId.toString -> classDate.getDate.format("dd/MM/yyyy"))
+        )
+        <button >submit</button>
+    }
+}

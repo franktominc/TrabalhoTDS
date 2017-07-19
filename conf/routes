@@ -26,9 +26,15 @@ GET     /subjects                   controllers.SubjectController.listSubjects()
 GET     /subject                    controllers.SubjectController.newSubject()
 POST    /subject                    controllers.SubjectController.addSubject()
 GET     /subject/:id                controllers.SubjectController.viewSubject(id: Long)
+GET     /subject/:id/classDates     controllers.SubjectController.listClassDates(id: Long)
+GET     /subject/:id/addClassDate   controllers.SubjectController.newClassDate(id: Long)
+POST    /subject/:id/newClassDate   controllers.SubjectController.addClassDate(id: Long)
 
-GET    /enrollment                  controllers.EnrollmentController.newEnrollment()
-POST   /enrollment                  controllers.EnrollmentController.addEnrollment()
+GET     /enrollment                 controllers.EnrollmentController.newEnrollment()
+POST    /enrollment                 controllers.EnrollmentController.addEnrollment()
+
+GET     /Attendance/:id             controllers.AttendanceController.addAttendance(id: Long)
+POST    /Attendance/:id             controllers.AttendanceController.newAttendance(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
